@@ -1,17 +1,16 @@
-// FRENTE 1 · sem estado e SEM "use client". Ele só desenha o que recebe.
-import { Vaga } from "@/lib/tipos";
-import Link from "next/link";
+import { arquivar } from "@/app/vagas/acoes";
+import BotaoDeEnviar from "@/components/BotaoDeEnviar";
 
-export default function CardDeVaga({ vaga }: { vaga: Vaga }) {
+export default function CardDeVaga({ vaga }) {
   return (
-    <li>
-      <Link href={`/vagas/${vaga.id}`}>
-        {vaga.titulo}
-        <span>
-          {vaga.empresa} · {vaga.area} · {vaga.senioridade} · {vaga.local}
-        </span>
-      </Link>
-      {vaga.aceitaIniciante && <span className="selo">aceita iniciante</span>}
-    </li>
+    <article className="cartao">
+      <h3>{vaga.titulo}</h3>
+      <p>{vaga.empresa} · {vaga.local}</p>
+
+      <form action={arquivar}>
+        <input type="hidden" name="id" value={vaga.id} />
+        <BotaoDeEnviar enviando="Arquivando…">Arquivar</BotaoDeEnviar>
+      </form>
+    </article>
   );
 }

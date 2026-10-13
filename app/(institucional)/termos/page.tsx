@@ -1,4 +1,3 @@
-// app/(institucional)/termos/page.tsx  →  /termos
 export default function Termos() {
   return (
     <>

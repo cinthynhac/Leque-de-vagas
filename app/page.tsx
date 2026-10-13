@@ -2,12 +2,8 @@ import Link from "next/link";
 import { listarVagas, listarEmpresas } from "@/lib/api";
 
 export default async function Home() {
-  /* Nenhum array importado de dentro do projeto: os dois vêm do lib/api, que
-     é o único lugar que conhece a fonte. Em paralelo, porque um não depende
-     do outro. */
   const [vagas, empresas] = await Promise.all([listarVagas(), listarEmpresas()]);
 
-  // Conta no servidor. Número que a página só mostra não é estado, é conta.
   const paraIniciante = vagas.filter((vaga) => vaga.aceitaIniciante).length;
 
   return (

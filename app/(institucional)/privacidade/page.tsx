@@ -1,4 +1,3 @@
-// app/(institucional)/privacidade/page.tsx  →  /privacidade
 export default function Privacidade() {
   return (
     <>

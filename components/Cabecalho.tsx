@@ -1,6 +1,3 @@
-// Repare: este arquivo NÃO tem "use client". Ele só usa o MenuLink, e quem
-// precisa rodar no navegador é o MenuLink, não ele. A linha marca a porta,
-// não cada móvel da casa.
 import MenuLink from "./MenuLink";
 
 export default function Cabecalho() {

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-
-// A metadata da página sobrescreve a do layout.
 export const metadata: Metadata = {
   title: "Sobre · Leque de Vagas",
 };

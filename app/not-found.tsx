@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-// O 404 do site inteiro: vale para qualquer endereço que não existe.
 export default function NaoEncontrado() {
   return (
     <div className="aviso">
