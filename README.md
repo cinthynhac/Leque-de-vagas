@@ -73,8 +73,14 @@ viraram `dados/*.json` buscados por rede, e os tipos ficaram sozinhos em
 | `app/vagas/[id]/loading.tsx` | esqueleto do tamanho do conteúdo real |
 | `app/vagas/[id]/error.tsx` | rede que caiu — em português, com botão de tentar de novo |
 
-A aula 03 fica inteira de pé: todos os componentes de cliente continuam iguais,
-com o mesmo `useState`. O que mudou é de onde vem a lista que eles recebem.
+Na frente 4, `MuralDeVagas` continua guardando busca e área, e `Filtros` continua
+controlado pelo pai. Os números e resultados filtrados são derivados desses
+estados; a página usa Suspense separado para números e listagem.
+
+**Frente 4 — desafio da aula 05.** A ação valida o ID, arquiva a vaga em memória
+e invalida `/vagas`. A persistência em banco da aula 06 requer integrar
+`arquivada` ao modelo `Vaga` compartilhado e coordenar a migration com a pessoa
+responsável pelo schema do grupo.
 
 ## O que NÃO tem, de propósito
 
@@ -84,8 +90,9 @@ Se você achar que está faltando, provavelmente está — mas na aula seguinte.
 - **Autenticação de verdade.** O formulário de candidatura guarda o que você
   digita só na memória da aba. Nada é enviado, nada é salvo. Aula 07.
 - **Server Actions.** O formulário não escreve em lugar nenhum: aula 05.
-- **Banco de dados.** A fonte é um JSON no GitHub. Trocá-la é mudar uma linha
-  em `lib/api.ts`, e nenhuma página fica sabendo — é o ponto do arquivo existir.
+- **Persistência do arquivamento.** Nesta etapa, o estado em memória desaparece
+  quando o processo do servidor reinicia. A próxima etapa é a aula 06, com banco
+  de dados.
 
 ## Detalhes que costumam pegar
 
@@ -140,8 +147,8 @@ app/
 components/                        as peças; só as com memória são de cliente
 dados/                             vagas.json e empresas.json — a fonte
 lib/
-├── tipos.ts                       só os tipos, nenhum dado
-└── api.ts                         o único arquivo que conhece a URL
+├── tipos.ts                       tipos do projeto
+├── api.ts                         o único arquivo que conhece a URL
 ```
 
 ## Licença
