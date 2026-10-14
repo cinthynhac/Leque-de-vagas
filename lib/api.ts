@@ -8,7 +8,9 @@ const CACHE_VAGAS = { next: { revalidate: 60, tags: ["vagas"] } };
 
 const CACHE_EMPRESAS = { next: { revalidate: 3600, tags: ["empresas"] } };
 
-export async function listarVagas(): Promise<Vaga[]> {
+const arquivadas = new Set<string>();
+
+async function buscarVagasPublicadas(): Promise<Vaga[]> {
   const resposta = await fetch(`${FONTE}/vagas.json`, CACHE_VAGAS);
 
   if (!resposta.ok) {
@@ -17,6 +19,16 @@ export async function listarVagas(): Promise<Vaga[]> {
 
   return resposta.json();
 }
+
+export async function listarVagas(): Promise<Vaga[]> {
+  const publicadas = await buscarVagasPublicadas();
+  return publicadas.filter((vaga) => !arquivadas.has(vaga.id));
+}
+
+export function arquivarVaga(id: string): void {
+  arquivadas.add(id);
+}
+
 export async function buscarVaga(id: string): Promise<Vaga | undefined> {
   const vagas = await listarVagas();
   return vagas.find((vaga) => vaga.id === id);
